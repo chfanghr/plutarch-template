@@ -118,8 +118,6 @@
       checks = perSystem (system:
         self.flake.${system}.checks // {
           formatCheck = formatCheckFor system;
-          # agora = self.flake.${system}.packages."agora:lib:agora";
-          # agora-test = self.flake.${system}.packages."agora:test:agora-test";
         });
       check = perSystem (system:
         (nixpkgsFor system).runCommand "combined-test" {
