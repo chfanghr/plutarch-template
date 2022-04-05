@@ -85,47 +85,10 @@
             ];
           };
         };
-
-      formatCheckFor = system:
-        let
-          pkgs = nixpkgsFor system;
-          pkgs' = nixpkgsFor' system;
-        in pkgs.runCommand "format-check" {
-          nativeBuildInputs = [
-            pkgs'.git
-            pkgs'.fd
-            pkgs'.haskellPackages.cabal-fmt
-            pkgs'.nixpkgs-fmt
-            (pkgs.haskell-nix.tools ghcVersion {
-              inherit (plutarch.tools) fourmolu;
-            }).fourmolu
-          ];
-        } ''
-          export LC_CTYPE=C.UTF-8
-          export LC_ALL=C.UTF-8
-          export LANG=C.UTF-8
-          cd ${self}
-          make format_check || (echo "    Please run 'make format'" ; exit 1)
-          mkdir $out
-        '';
     in {
       project = perSystem projectFor;
       flake = perSystem (system: (projectFor system).flake { });
-
       packages = perSystem (system: self.flake.${system}.packages);
-
-      # Define what we want to test
-      checks = perSystem (system:
-        self.flake.${system}.checks // {
-          formatCheck = formatCheckFor system;
-        });
-      check = perSystem (system:
-        (nixpkgsFor system).runCommand "combined-test" {
-          checksss = builtins.attrValues self.checks.${system};
-        } ''
-          echo $checksss
-          touch $out
-        '');
       devShell = perSystem (system: self.flake.${system}.devShell);
     };
 }
