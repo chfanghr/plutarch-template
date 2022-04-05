@@ -1,0 +1,116 @@
+cabal-version:      2.4
+name:               plutarch-template
+version:            0.1.0.0
+synopsis:
+
+homepage:
+
+license:            MIT
+license-file:       LICENSE
+author:             Hongrui Fang
+maintainer:         chfanghr@gmail.com
+
+extra-source-files: CHANGELOG.md
+
+common lang
+  ghc-options:
+    -Wall -Wcompat -Wincomplete-uni-patterns -Wno-unused-do-bind
+    -Wno-partial-type-signatures -Wmissing-export-lists
+    -Wincomplete-record-updates -Wmissing-deriving-strategies
+    -Wno-name-shadowing -Wunused-foralls -fprint-explicit-foralls
+    -fprint-explicit-kinds -Werror
+
+  mixins:
+    base hiding (Prelude),
+    pprelude (PPrelude as Prelude)
+
+  default-extensions:
+    NoStarIsType
+    BangPatterns
+    BinaryLiterals
+    ConstrainedClassMethods
+    ConstraintKinds
+    DataKinds
+    DeriveAnyClass
+    DeriveDataTypeable
+    DeriveFoldable
+    DeriveFunctor
+    DeriveGeneric
+    DeriveLift
+    DeriveTraversable
+    DerivingStrategies
+    DerivingVia
+    DoAndIfThenElse
+    EmptyCase
+    EmptyDataDecls
+    EmptyDataDeriving
+    ExistentialQuantification
+    ExplicitForAll
+    FlexibleContexts
+    FlexibleInstances
+    ForeignFunctionInterface
+    GADTSyntax
+    GeneralisedNewtypeDeriving
+    HexFloatLiterals
+    ImplicitPrelude
+    ImportQualifiedPost
+    InstanceSigs
+    KindSignatures
+    LambdaCase
+    MonomorphismRestriction
+    MultiParamTypeClasses
+    NamedFieldPuns
+    NamedWildCards
+    NumericUnderscores
+    OverloadedStrings
+    PartialTypeSignatures
+    PatternGuards
+    PolyKinds
+    PostfixOperators
+    RankNTypes
+    RelaxedPolyRec
+    ScopedTypeVariables
+    StandaloneDeriving
+    StandaloneKindSignatures
+    TupleSections
+    TypeApplications
+    TypeFamilies
+    TypeOperators
+    TypeSynonymInstances
+    UndecidableInstances
+    ViewPatterns
+    OverloadedRecordDot
+    QualifiedDo
+
+  default-language:   Haskell2010
+
+common deps
+  build-depends:
+    , aeson
+    , ansi-terminal
+    , base                >=4.14 && <5
+    , base-compat
+    , bytestring
+    , cardano-prelude
+    , containers
+    , data-default
+    , data-default-class
+    , generics-sop
+    , plutarch
+    , plutarch-extra
+    , plutarch-numeric
+    , plutarch-safemoney
+    , plutus-core
+    , plutus-ledger-api
+    , plutus-tx
+    , pprelude
+    , prettyprinter
+    , recursion-schemes
+    , serialise
+    , template-haskell
+    , text
+
+executable plutarch-template
+    import:         lang, deps
+    main-is:          Main.hs
+    hs-source-dirs:   app
