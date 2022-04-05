@@ -22,7 +22,6 @@ common lang
 
   mixins:
     base hiding (Prelude),
-    pprelude (PPrelude as Prelude)
 
   default-extensions:
     NoStarIsType
@@ -103,7 +102,6 @@ common deps
     , plutus-core
     , plutus-ledger-api
     , plutus-tx
-    , pprelude
     , prettyprinter
     , recursion-schemes
     , serialise
