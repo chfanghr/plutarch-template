@@ -20,9 +20,6 @@ common lang
     -Wno-name-shadowing -Wunused-foralls -fprint-explicit-foralls
     -fprint-explicit-kinds -Werror
 
-  mixins:
-    base hiding (Prelude),
-
   default-extensions:
     NoStarIsType
     BangPatterns
