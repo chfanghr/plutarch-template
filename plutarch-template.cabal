@@ -113,13 +113,13 @@ library pprelude
     , plutarch
 
   exposed-modules:  PPrelude
-  hs-source-dirs:   src
+  hs-source-dirs:   pprelude
   default-language: Haskell2010
 
 library
   import:         lang, deps
   hs-source-dirs: src
-  exposed-modules: Stuff.Dummy
+  exposed-modules: Dummy
 
 executable plutarch-template
   import:         lang, deps
