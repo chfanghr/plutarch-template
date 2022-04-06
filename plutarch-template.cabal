@@ -119,7 +119,7 @@ library pprelude
 library
   import:         lang, deps
   hs-source-dirs: src
-  exposed-modules: Dummy
+  exposed-modules: Fib, Utils
 
 executable plutarch-template
   import:         lang, deps
